@@ -656,5 +656,22 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+
+  {
+    id: "yoyoyoyyooyyo-1-1-1-1-1--1",
+    image: "images/products/backpack.jpg",
+    name: "YO Cool Backpack",
+    rating:{
+      stars: 4,
+      count: 213
+    },
+    priceCents : 1299,
+    keywords:[
+      "backpack",
+      "mens backpack",
+      "cool backpack"
+    ]
+
   }
 ];

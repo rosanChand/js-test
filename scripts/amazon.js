@@ -42,7 +42,7 @@ products.forEach((product)=>{
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -56,10 +56,15 @@ products.forEach((product)=>{
 
 document.querySelector('.js-product-grid').innerHTML = productsHTML;
 
+
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button) =>{
+  let clearTimeoutId;
+let click = true;
+  
     button.addEventListener('click',()=>{
-        const productId = button.dataset.productId;
+     
+        const {productId} = button.dataset;
 
         let incrementValue = document.querySelector(`.js-quantity-selector-${productId}`).value;
         // console.log(incrementValue);
@@ -76,7 +81,7 @@ document.querySelectorAll('.js-add-to-cart')
         }
         else{
             cart.push({
-                productId: productId,
+                productId,
                 quantity: parseInt(`${incrementValue}`)
             });
         }
@@ -89,6 +94,28 @@ document.querySelectorAll('.js-add-to-cart')
         // console.log(cart);
         document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
+
+         
+
+         
+        //  if(click){
+        //  click = false;
+        clearTimeout(clearTimeoutId);
+         document.querySelector(`.js-added-to-cart-${productId}`).classList.add('added-to-cart-opacity');
+         
+         clearTimeoutId =  setTimeout(()=>{
+          document.querySelector(`.js-added-to-cart-${productId}`).classList.remove('added-to-cart-opacity');
+         },5000);
+
+        //  }
+        //  else{
+        //   clearTimeout(clearTimeoutId);
+        //   document.querySelector(`.js-added-to-cart-${productId}`).classList.add('added-to-cart-opacity');
+        //   clearTimeoutId =  setTimeout(()=>{
+        //     document.querySelector(`.js-added-to-cart-${productId}`).classList.remove('added-to-cart-opacity');
+        //    },5000);
+        //   click = true;
+        //  }
 
     });
 })
